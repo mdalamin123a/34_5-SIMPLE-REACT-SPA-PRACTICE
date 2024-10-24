@@ -6,14 +6,25 @@ function App() {
   const [countries, setCountries] = useState([]);
 
   useEffect(()=>{
-    fetch("https://api.countrylayer.com/v2/all?access_key=b39e2fdecb06fad84fbcd49ae78751e6")
+    fetch("https://restcountries.com/v3.1/all")
     .then(response => response.json())
-    .then(data => setCountries(data));
+    .then(data => {
+      setCountries(data);
+      console.log(data);
+      const names = data.map(country => country.name.common);
+      console.log(names);
+    })
+    .catch(error => console.log(error));
   }, []);
-  
+
   return (
     <div className="App">
       <h1>Country Loaded: {countries.length}</h1>
+      <ul>
+        {
+          countries.map(country => <li>{country.name.common}</li>)
+        }
+      </ul>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
