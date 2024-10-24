@@ -1,0 +1,2 @@
+1. use useEffect hook for load data form api
+2. use useState hook for manage state on component => get current state and updata state
